@@ -1,3 +1,6 @@
+--[[
+    LUA library for webscript.io
+--]]
 function url_encode(str)
   if (str) then
     str = string.gsub (str, "\n", "\r\n")
