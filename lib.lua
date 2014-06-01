@@ -34,6 +34,14 @@ function lib.tprint (tbl, indent)
   end
 end
 
+function lib.pdate(s)
+p="%a+, (%d+) (%a+) (%d+)"
+day,month,year=s:match(p)
+MON={Jan=1,Feb=2,Mar=3,Apr=4,May=5,Jun=6,Jul=7,Aug=8,Sep=9,Oct=10,Nov=11,Dec=12}
+month=MON[month]
+return lib.Date(year.."-"..month.."-"..day)
+end
+
 -- Function to log current date time
 
 function lib.datetimestamp(offset)
