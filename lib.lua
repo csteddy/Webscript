@@ -1,7 +1,9 @@
 --[[
     LUA library for webscript.io
 --]]
-function url_encode(str)
+lib = {}
+
+function lib.url_encode(str)
   if (str) then
     str = string.gsub (str, "\n", "\r\n")
     str = string.gsub (str, "([^%w %-%_%.%~])",
@@ -10,3 +12,5 @@ function url_encode(str)
   end
   return str	
 end
+
+return lib
