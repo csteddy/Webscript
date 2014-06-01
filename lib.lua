@@ -34,6 +34,8 @@ function lib.tprint (tbl, indent)
   end
 end
 
+-- Function to log current date time
+
 function lib.datetimestamp(offset)
 local gmt = os.time()
 local awst = gmt + offset*60*60  --GMT +/-
@@ -44,4 +46,52 @@ timestamp = (today.day..'/'..today.month..'/'..today.year..' | '..string.format(
 log('Script ran at '..timestamp)
 return
 end
+
+local meta ={}
+
+function lib. Date(str)
+-- Create a Date object of the form yyyy-mm-dd
+	local p ="(%d+)%-(%d+)%-(%d+)"
+  local datestring = {}
+	
+	datestring.year, datestring.month, datestring.day = string.match(str, p)
+	datestring.osdate = os.time(datestring)
+	datestring.wday = tonumber(os.date("%w",datestring.osdate)) -- [0-6 = Sunday-Saturday]
+	datestring.str = str
+	setmetatable(datestring,meta)
+	return datestring
+end
+
+function meta.__lt(date1,date2)
+-- compare two dates in the format yyyy-mm-dd
+	return date1.osdate < date2.osdate
+end
+
+function meta.__le(date1,date2)
+-- compare two dates in the format yyyy-mm-dd
+	return date1.osdate <= date2.osdate
+end 
+
+function meta.__eq (date1,date2)
+	-- compare two dates in the format yyyy-mm-dd
+  return date1.osdate <= date2.osdate and date2.osdate <= date1.osdate
+end
+
+function meta.__add(lhs,rhs)
+	-- add days to a data object
+	-- right hand side must be the number
+	assert(type(rhs)=='number','RHS of add not a number')
+	local datestring = {}
+	local osdate = lhs.osdate + (24*60*60*rhs)
+	temp = os.date("*t", osdate)
+	datestring.year = tostring(temp.year)
+	datestring.month = tostring(temp.month)
+	datestring.day = tostring(temp.day)
+	datestring.wday = temp.wday - 1 -- convert  [0-6 = Sunday-Saturday]
+	datestring.osdate = osdate
+	datestring.str = datestring.year..'-'..datestring.month..'-'..datestring.day
+	setmetatable(datestring,meta)
+	return datestring
+end
+
 return lib
