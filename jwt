@@ -7,6 +7,7 @@ return result
 end
 
 local function jsonEncode(input)
+log('jsonEncode')
 result = json.stringify(input)
 return result
 end
