@@ -49,7 +49,7 @@ end
 
 local meta ={}
 
-function lib. Date(str)
+function lib.Date(str)
 -- Create a Date object of the form yyyy-mm-dd
 	local p ="(%d+)%-(%d+)%-(%d+)"
   local datestring = {}
