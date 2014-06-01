@@ -27,7 +27,7 @@ function lib.tprint (tbl, indent)
     formatting = string.rep("  ", indent) .. k .. ": "
     if type(v) == "table" then
       print(formatting)
-      tprint(v, indent+1)
+      lib.tprint(v, indent+1)
     else
       print(formatting .. tostring(v))
     end
