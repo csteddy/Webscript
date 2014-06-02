@@ -102,4 +102,47 @@ function meta.__add(lhs,rhs)
 	return datestring
 end
 
+function lib.ispublicholiday(date)
+--[[
+Checks for Western Australian public holidays in 2014
+--]]	
+holidays ={}
+
+holidays['1/1/2014'] = "New Year's Day"
+holidays['27/1/2014'] = "Australia Day"	
+holidays['3/3/2014'] = "Labour Day" 
+holidays['18/4/2014'] = "Good Friday"
+holidays['21/4/2014'] = "Easter Monday"
+holidays['25/4/2014'] = "Anzac Day"
+holidays['2/6/2014'] = "Western Australia Day"
+holidays['29/9/2014'] = "Queen's Birthday"
+holidays['25/12/2014'] = "Christmas Day"
+holidays['26/12/2014'] = "Boxing Day"
+
+
+-- normalise date
+	p ="(%d+)[-/](%d+)[-/](%d+)"
+  x1,x2,x3 = string.match(date, p)
+	
+-- year will be x1 or x3
+-- day will be x1 or x3
+-- month will be x2 (numeric or alpha)
+if tonumber(x1) > 1000 then
+		year = x1
+		day = x3
+else
+		year = x3
+		day = x1
+end
+
+if not tonumber(x2) then
+	MON={Jan=1,Feb=2,Mar=3,Apr=4,May=5,Jun=6,Jul=7,Aug=8,Sep=9,Oct=10,Nov=11,Dec=12}
+	month=MON[x2]
+else
+	month = x2
+end			
+
+return holidays[tostring(day)..'/'..tostring(month)..'/'..tostring(year)]
+end
+
 return lib
