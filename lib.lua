@@ -145,7 +145,7 @@ end
 return holidays[tostring(day)..'/'..tostring(month)..'/'..tostring(year)]
 end
 
-function haversine(pt1, pt2)
+function lib.haversine(pt1, pt2)
 
 --[[
 	A function to return the distance in Kms between two points.
