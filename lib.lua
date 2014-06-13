@@ -145,4 +145,32 @@ end
 return holidays[tostring(day)..'/'..tostring(month)..'/'..tostring(year)]
 end
 
+function haversine(pt1, pt2)
+
+--[[
+	A function to return the distance in Kms between two points.
+
+	Usage:
+
+
+	pt1={}; pt1.lat = -31.943068; pt1.lon = 115.879925
+	pt2={}; pt2.lat = -32.1058824;pt2.lon = 115.810732
+
+	print(haversine(pt1,pt2))
+
+
+--]]
+	local R = 6371; --km radius of the earth
+	local lat1=math.rad(pt1.lat)
+	local lat2=math.rad(pt2.lat)
+	local latDelta = math.rad(pt2.lat-pt1.lat)
+	local lonDelta = math.rad(pt2.lon-pt1.lon)
+
+	local a = math.sin(latDelta/2) * math.sin(latDelta/2) + math.cos(lat1) * math.cos(lat2) * math.sin(lonDelta/2) * math.sin(lonDelta/2)
+	local c = 2 * math.atan2(math.sqrt(a) , math.sqrt(1-a))
+	local d = R * c
+
+	return d
+end
+
 return lib
