@@ -34,6 +34,14 @@ function lib.tprint (tbl, indent)
   end
 end
 
+function lib.fill(str)
+	if str == nil then
+		return ''
+	else
+		return str
+	end
+end
+
 function lib.pdate(s)
 p="%a+, (%d+) (%a+) (%d+)"
 day,month,year=s:match(p)
