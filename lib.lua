@@ -67,6 +67,7 @@ end
 -- Function to log current date time
 
 function lib.datetimestamp(offset)
+offset = offset or 8
 local gmt = os.time()
 local awst = gmt + offset*60*60  --GMT +/-
 local today = os.date("*t", awst)
