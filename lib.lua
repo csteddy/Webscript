@@ -66,15 +66,16 @@ end
 
 -- Function to log current date time
 
-function lib.datetimestamp(offset)
+function lib.datetimestamp(offset,msg)
 offset = offset or 8
+msg = msg or 'Script ran at '
 local gmt = os.time()
 local awst = gmt + offset*60*60  --GMT +/-
 local today = os.date("*t", awst)
 local hhmm = string.format("%02d:%02d", today.hour, today.min)
 
 timestamp = (today.day..'/'..today.month..'/'..today.year..' | '..string.format("%02d:%02d", today.hour, today.min))
-log('Script ran at '..timestamp)
+log(msg..timestamp)
 return
 end
 
