@@ -1,9 +1,45 @@
 --[[
     LUA library for webscript.io
     Many/most of this functions have been copied without attribution from public websites etc.
-    If you ae the author and want attribution then please let me know at csteddy at petaplex dot com.
+    If you are the author and want attribution then please let me know at csteddy at petaplex dot com.
 --]]
 lib = {}
+
+function lib.to_Dd(latlon)
+-- Latitude and Longitude are in DM.m - 3200.7308S 11545.8208E
+-- Convert to D.d
+local lat,ns,lon,ew,dpos,minutes,degrees,latDd,lonDd
+	
+lat, ns, lon, ew = string.match(latlon, '(.*)%s*(%a)%s*(.*)%s*(%a)')
+--log(lat,ns,lon,ew)
+--find decimal point
+    dpos = lat:find('%.')
+	  if (dpos == nil) then
+		  lat = lat.."."
+		  dpos = #lat
+		end
+    minutes = (lat:sub(dpos-2,-1))/60
+	  degrees = lat:sub(1,dpos-3)
+	  latDd = degrees + minutes
+	  if(ns == 'S') then 
+			latDd = -latDd
+		end
+--find decimal point
+    dpos = lon:find('%.')
+	  if (dpos == nil) then
+		  lon = lon.."."
+		  dpos = #lon
+		end
+    minutes = (lon:sub(dpos-2,-1))/60
+	  degrees = lon:sub(1,dpos-3)
+	  lonDd = degrees + minutes
+	  if(ns == 'W') then 
+			lonDd = -lonDd
+		end
+return latDd,lonDd
+
+end
+
 -- Function to return the URL encoded version of the specified string
 function lib.url_encode(str)
   if (str) then
