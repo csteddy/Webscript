@@ -16,6 +16,13 @@ return http.request {
 
 end
 
+function lib.trello(key,token,method,endpoint,params,data)
+
+prefix = 'https://api.trello.com/1/'
+
+return lib.callout(prefix..endpoint,method,params,data)
+
+end	
 function lib.to_Dd(latlon)
 -- Latitude and Longitude are in DM.m - 3200.7308S 11545.8208E
 -- Convert to D.d
