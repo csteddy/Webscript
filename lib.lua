@@ -5,7 +5,7 @@
 --]]
 lib = {}
 
-function callout(req_url,req_method,req_params,req_data)
+function lib.callout(req_url,req_method,req_params,req_data)
 
 return http.request {
 	      url = req_url, method = req_method, 
