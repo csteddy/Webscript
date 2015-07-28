@@ -5,6 +5,17 @@
 --]]
 lib = {}
 
+function callout(req_url,req_method,req_params,req_data)
+
+return http.request {
+	      url = req_url, method = req_method, 
+	      headers = req_headers, 
+	      params = req_params,
+		    data = req_data
+        }
+
+end
+
 function lib.to_Dd(latlon)
 -- Latitude and Longitude are in DM.m - 3200.7308S 11545.8208E
 -- Convert to D.d
