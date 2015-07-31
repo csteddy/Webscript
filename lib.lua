@@ -15,15 +15,26 @@ return http.request {
         }
 
 end
---[[
-function lib.trello(key,token,method,endpoint,params,data)
 
-prefix = 'https://api.trello.com/1/'
-
-return lib.callout(prefix..endpoint,method,params,data)
-
+function lib.split(str, pat)
+   local t = {}  -- NOTE: use {n = 0} in Lua-5.0
+   local fpat = "(.-)" .. pat
+   local last_end = 1
+   local s, e, cap = str:find(fpat, 1)
+   while s do
+      if s ~= 1 or cap ~= "" then
+	 table.insert(t,cap)
+      end
+      last_end = e+1
+      s, e, cap = str:find(fpat, last_end)
+   end
+   if last_end <= #str then
+      cap = str:sub(last_end)
+      table.insert(t, cap)
+   end
+   return t
 end
---]]
+
 function lib.to_Dd(latlon)
 -- Latitude and Longitude are in DM.m - 3200.7308S 11545.8208E
 -- Convert to D.d
