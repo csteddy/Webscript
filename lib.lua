@@ -89,6 +89,7 @@ function lib.istable(t) return type(t) == 'table' end
 -- `indent` sets the initial level of indentation.
 function lib.tprint (tbl, indent)
   if not indent then indent = 0 end
+  local k,v
   for k, v in pairs(tbl) do
     formatting = string.rep("  ", indent) .. k .. ": "
     if type(v) == "table" then
