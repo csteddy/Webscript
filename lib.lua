@@ -99,7 +99,7 @@ function lib.tprint (tbl, indent)
       print(formatting .. tostring(v))
     end
   end
-return formatting
+return  
 end
 
 function lib.pairsByKeys (t, f)
