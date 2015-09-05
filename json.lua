@@ -7,7 +7,7 @@ return lunajson.decode(str)
 end
 
 function json.stringify(table)
-log('new serialise function'
+log('new serialise function')
 return lunajson.encode(table)
 
 end
