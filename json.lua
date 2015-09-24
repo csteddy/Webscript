@@ -11,3 +11,5 @@ log('new serialise function')
 return lunajson.encode(table)
 
 end
+
+return json
