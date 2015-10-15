@@ -14,6 +14,7 @@ function myob.apiCall(q)
 local API_endpoint = 'https://api.myob.com/accountright/84f38c5b-82a0-4213-9ad8-6c38b177a0ed/'
 
 require 'csteddy/Webscript/lib.lua'
+require 'csteddy/Webscript/json.lua'
 
 o=json.parse(storage.oauth)
 token = o["access_token"]
@@ -25,7 +26,7 @@ req_headers["x-myobapi-key"] = o["consumer_key"]
 req_headers["x-myobapi-version"] = "v2"
 
 queue = 'myob'
-lease.acquire(queue)
+--lease.acquire(queue)
 
 cache={}
 if storage[queue] then
@@ -55,7 +56,7 @@ else if r.statuscode == 200 then
 end
 
 return r.statuscode,r.content
-
+lease.release(queue)
 end
 
 return myob
