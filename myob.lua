@@ -45,7 +45,7 @@ r = lib.callout(ep,'GET',{},{})
 if r.statuscode == 304 then
 	r.statuscode = 200
 	r.content = cache[ep].data
-else if r.statuscode == 200 then
+elseif r.statuscode == 200 then
 
   cache[ep] = {['etag'] = r.headers['etag'],
 		['data'] = r.content}
