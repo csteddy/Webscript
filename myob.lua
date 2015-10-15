@@ -26,7 +26,7 @@ req_headers["x-myobapi-key"] = o["consumer_key"]
 req_headers["x-myobapi-version"] = "v2"
 
 queue = 'myob'
---lease.acquire(queue)
+lease.acquire(queue)
 
 cache={}
 if storage[queue] then
@@ -42,21 +42,23 @@ if cache[ep] then
   req_headers["If-None-Match"] = cache[ep].etag
 end
 r = lib.callout(ep,'GET',{},{})
-if r.statuscode == 304 then
-	return 200,cache[ep].data
 	
-elseif r.statuscode == 200 then
+if r.statuscode == 304 then
+  return 200,cache[ep].data
+end	
 
+if r.statuscode == 200 then
+-- Save response and etag in persistent storage
   cache[ep] = {['etag'] = r.headers['etag'],
 		['data'] = r.content}
   storage[queue]=json.stringify(cache)
-else	
-  log('xxx')	
+  return 200,r.content
 end
 
 lease.release(queue)
 return r.statuscode,r.content
 
+
 end
-end
+
 return myob
