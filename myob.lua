@@ -55,8 +55,8 @@ else if r.statuscode == 200 then
 	end
 end
 
-return r.statuscode,r.content
 lease.release(queue)
+return r.statuscode,r.content
 end
 
 return myob
