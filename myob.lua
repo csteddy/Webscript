@@ -43,20 +43,20 @@ if cache[ep] then
 end
 r = lib.callout(ep,'GET',{},{})
 if r.statuscode == 304 then
-	r.statuscode = 200
-	r.content = cache[ep].data
+	return 200,cache[ep].data
+	
 elseif r.statuscode == 200 then
 
   cache[ep] = {['etag'] = r.headers['etag'],
 		['data'] = r.content}
   storage[queue]=json.stringify(cache)
-	
-	
+else	
+  log('xxx')	
 end
-
+log
 lease.release(queue)
 return r.statuscode,r.content
 
 end
-
+end
 return myob
