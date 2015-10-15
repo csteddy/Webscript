@@ -53,7 +53,7 @@ elseif r.statuscode == 200 then
 else	
   log('xxx')	
 end
-log
+
 lease.release(queue)
 return r.statuscode,r.content
 
