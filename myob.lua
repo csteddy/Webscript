@@ -39,13 +39,12 @@ ep = API_endpoint..q
 --if so then pass the etag that we have in the headers so that
 --MYOB can tell us if we already have the most current data
 if cache[ep] then
-	req_headers["If-None-Match"] = cache[ep].etag
+  req_headers["If-None-Match"] = cache[ep].etag
 end
-local r = lib.callout(ep,'GET',{},{})
+r = lib.callout(ep,'GET',{},{})
 if r.statuscode == 304 then
 	r.statuscode = 200
 	r.content = cache[ep].data
-	log('myob.lua '..r.statuscode)
 else if r.statuscode == 200 then
 
   cache[ep] = {['etag'] = r.headers['etag'],
@@ -53,7 +52,6 @@ else if r.statuscode == 200 then
   storage[queue]=json.stringify(cache)
 	
 	
-	end
 end
 
 lease.release(queue)
