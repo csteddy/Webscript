@@ -9,7 +9,7 @@ seperate script that is run via Cron.
 
 
 --]]
-function apiCall(q)
+function myob.apiCall(q)
 
 local API_endpoint = 'https://api.myob.com/accountright/84f38c5b-82a0-4213-9ad8-6c38b177a0ed/'
 
