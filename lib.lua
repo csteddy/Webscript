@@ -240,6 +240,18 @@ holidays['5/6/2017'] = "Western Australia Day"
 holidays['26/9/2017'] = "Queen's Birthday"
 holidays['25/12/2017'] = "Christmas Day"
 holidays['26/12/2017'] = "Boxing Day"
+
+holidays['1/1/2018'] = "New Year's Day"
+holidays['26/1/2018'] = "Australia Day"	
+holidays['5/3/2018'] = "Labour Day" 
+holidays['30/3/2018'] = "Good Friday"
+holidays['2/4/2018'] = "Easter Monday"
+holidays['25/4/2018'] = "Anzac Day"
+holidays['4/6/2018'] = "Western Australia Day"
+holidays['1/10/2018'] = "Queen's Birthday"
+holidays['25/12/2018'] = "Christmas Day"
+holidays['26/12/2018'] = "Boxing Day"
+	
 -- normalise date
 	p ="(%d+)[-/](%d+)[-/](%d+)"
   x1,x2,x3 = string.match(date, p)
