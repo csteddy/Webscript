@@ -11,7 +11,7 @@ seperate script that is run via Cron.
 --]]
 function myob.apiCall(q)
 
-local API_endpoint = 'https://api.myob.com/accountright/84f38c5b-82a0-4213-9ad8-6c38b177a0ed/'
+local API_endpoint = 'https://ar3.api.myob.com/accountright/84f38c5b-82a0-4213-9ad8-6c38b177a0ed/'
 
 require 'csteddy/Webscript/lib.lua'
 require 'csteddy/Webscript/json.lua'
