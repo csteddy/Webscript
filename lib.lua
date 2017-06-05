@@ -196,7 +196,8 @@ end
 
 function lib.ispublicholiday(date)
 --[[
-Checks for Western Australian public holidays in 2014
+Checks for Western Australian public holidays
+https://publicholidays.com.au/western-australia/2019-dates/
 --]]	
 holidays ={}
 
@@ -251,7 +252,18 @@ holidays['4/6/2018'] = "Western Australia Day"
 holidays['1/10/2018'] = "Queen's Birthday"
 holidays['25/12/2018'] = "Christmas Day"
 holidays['26/12/2018'] = "Boxing Day"
-	
+
+holidays['1/1/2019'] = "New Year's Day"
+holidays['28/1/2019'] = "Australia Day"	
+holidays['4/3/2019'] = "Labour Day" 
+holidays['19/4/2019'] = "Good Friday"
+holidays['22/4/2019'] = "Easter Monday"
+holidays['25/4/2019'] = "Anzac Day"
+holidays['3/6/2019'] = "Western Australia Day"
+holidays['23/9/2019'] = "Queen's Birthday"
+holidays['25/12/2019'] = "Christmas Day"
+holidays['26/12/2019'] = "Boxing Day"
+
 -- normalise date
 	p ="(%d+)[-/](%d+)[-/](%d+)"
   x1,x2,x3 = string.match(date, p)
